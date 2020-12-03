@@ -19,12 +19,18 @@ function Signup() {
           password: '',
         },
         onSubmit: values => {
-          alert(JSON.stringify(values, null, 2));
+          Firebase.register(values.email, values.password)
         },
       });
 
 
     const signupStyles = stylesFunc();  // yukardaki functionu degiskene atayip class icinden wrapper cagirabiliriz
+   
+const HandleGoogleButtonClick = () =>{
+    Firebase.useGoogleProvider();
+}
+   
+   
     return (
         <Container className={signupStyles.wrapper} maxWidth="sm">
             <form onSubmit={formik.handleSubmit}>
@@ -62,11 +68,11 @@ function Signup() {
                 </Grid>
 
                 <Grid item xs={12} >
-                <Button type='submit' variant="contained" color="primary" fullWidth>Submit</Button>
+                <Button type='submit' variant="contained" color="primary" fullWidth>Register</Button>
                 </Grid>
 
                 <Grid item xs={12} >
-                <Button variant="contained" color="secondary" fullWidth>Signup with Google</Button>
+                <Button variant="contained" color="secondary" fullWidth onClick={HandleGoogleButtonClick}>Signup with Google</Button>
                 </Grid>
 
             </Grid>
