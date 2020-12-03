@@ -1,13 +1,11 @@
-import Navbar from './components/Navbar';
-import Signup from './pages/Signup';
+import AppRouter from './Router/Router'
 
 function App() {
+  console.log(process.env);
+
   return (
     <div className="App">
-
-      <Navbar />
-      <Signup />
-
+      <AppRouter />
     </div>
   );
 }
