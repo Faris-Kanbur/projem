@@ -1,12 +1,13 @@
-import AppRouter from './Router/Router'
+import AppRouter from './Router/Router';
+import AuthContextProvider from './context/AuthContext';
 
 function App() {
-  console.log(process.env);
-
   return (
-    <div className="App">
+    
+    <AuthContextProvider>
       <AppRouter />
-    </div>
+    </AuthContextProvider>
+    
   );
 }
 
