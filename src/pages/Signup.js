@@ -3,6 +3,16 @@ import { Button,TextField, Grid, Container} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useFormik } from 'formik';
 import Firebase from '../firebase/firebase.utils';
+import * as Yup from 'yup';
+
+const signupValidationSchema = Yup.object().shape({
+    displayName: Yup.string().required('Display Name is required'),
+    email: Yup.string().email('Invalid Email').required('Email is required'),
+    password: Yup.string()
+    .required("No password provided")
+    .min(8, "Password is to short - should be 8 chars minimum")
+
+}); 
 
 const stylesFunc =makeStyles({
     wrapper:{
@@ -18,6 +28,7 @@ function Signup() {
           email: '',
           password: '',
         },
+        validationSchema:signupValidationSchema,
         onSubmit: values => {
           Firebase.register(values.displayName, values.email, values.password)
         },
@@ -44,6 +55,8 @@ const HandleGoogleButtonClick = () =>{
                 fullWidth
                 value={formik.values.displayName}
                 onChange={formik.handleChange}
+                error={formik.errors.displayName}
+                helperText={formik.errors.displayName}
                 />
                 </Grid>
                 <Grid item xs={12}>
@@ -54,6 +67,8 @@ const HandleGoogleButtonClick = () =>{
                 fullWidth
                 value={formik.values.email}
                 onChange={formik.handleChange}
+                error={formik.errors.email}
+                helperText={formik.errors.email}
                 />
                 </Grid>
                 <Grid item xs={12} >
@@ -65,6 +80,8 @@ const HandleGoogleButtonClick = () =>{
                 fullWidth
                 value={formik.values.password}
                 onChange={formik.handleChange}
+                error={formik.errors.password}
+                helperText={formik.errors.password}
                 />
                 </Grid>
 

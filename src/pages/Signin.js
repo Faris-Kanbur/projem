@@ -7,7 +7,9 @@ import * as Yup from 'yup';
 
 const signInValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid Email').required('Email is required'),
-  // password: Yup.string()
+  password: Yup.string()
+    .required("No password provided")
+    .min(8, "Password is to short - should be 8 chars minimum")
 
 }); 
 
@@ -66,6 +68,8 @@ const initialValues= {
                 fullWidth
                 value={values.password}
                 onChange={handleChange}
+                error={errors.password}
+                helperText={errors.password}
                 />
             </Grid>
             <Grid item xs={12}>
