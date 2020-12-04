@@ -19,7 +19,7 @@ function Signup() {
           password: '',
         },
         onSubmit: values => {
-          Firebase.register(values.email, values.password)
+          Firebase.register(values.displayName, values.email, values.password)
         },
       });
 
