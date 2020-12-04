@@ -20,7 +20,7 @@ const stylesFunc = makeStyles((theme) => ({
     textAlign: 'center',
   },
   avatar:{
-    margin: '2rem auto',
+    margin: '1rem auto',
     backgroundColor: theme.palette.secondary.main,
 
   },
