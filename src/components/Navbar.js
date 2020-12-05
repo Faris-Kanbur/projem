@@ -10,6 +10,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { FirebaseAuthContext } from "../context/AuthContext";
 import firebase from "../firebase/firebase.utils";
+import { useHistory } from "react-router-dom";
+import HomeIcon from "@material-ui/icons/Home";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Navbar() {
   const { currentUser } = useContext(FirebaseAuthContext);
   const classes = useStyles();
+  const history = useHistory();
+
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -33,13 +37,10 @@ export default function Navbar() {
     setAnchorEl(event.currentTarget);
   };
 
-  const bigData = useMemo(
-    () => ({
-      a: "a",
-      b: "b",
-    }),
-    []
-  );
+
+  const handleHomeClick = useCallback (() => {
+    history.push(`/`);
+  }, []);
 
   const handleClose = useCallback(() => {
     setAnchorEl(null);
@@ -58,9 +59,11 @@ export default function Navbar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={handleHomeClick}
           >
-            <MenuIcon />
+            <HomeIcon />
           </IconButton>
+          <MenuIcon />
           <Typography variant="h6" className={classes.title}>
             React Share
           </Typography>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../helper/FetchData";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Grid, capitalize } from "@material-ui/core";
+import { Container, Grid, capitalize , CircularProgress} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import {format as formatDate, parseISO} from 'date-fns';
 
@@ -31,6 +31,10 @@ function UserDetail() {
 
   return (
     <Container className={mainStyles.wrapper}>
+      { !userDetail ?  ( <CircularProgress /> ) : 
+      (
+      
+      <React.Fragment>
       <img src={userDetail?.picture} alt="user" />
       <Typography variant="h4">{userDetail?.firstName}</Typography>
       <Typography variant="h4">{userDetail?.lastName}</Typography>
@@ -40,6 +44,8 @@ function UserDetail() {
           </Typography>
       )}
       <Typography variant="h4">{userDetail?.phone}</Typography>
+      </React.Fragment>  
+      )}
     </Container>
   );
 }
